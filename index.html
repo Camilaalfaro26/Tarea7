@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventario creativo | Tarea 7</title>
+  <meta name="theme-color" content="#121014">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="contenedor">
+    <header class="cabecera">
+      <div><p class="etiqueta">ESTUDIO CREATIVO / CONTROL DE MATERIALES</p><h1>Mi inventario<span>.</span></h1>
+      <p>Organiza los materiales de tu próxima gran idea.</p></div>
+      <span class="numero-modulo">MÓDULO 07 · JAVASCRIPT</span>
+    </header>
+
+    <section class="resumen" aria-label="Resumen de los productos visibles">
+      <article><p>Productos</p><strong id="total-productos">0</strong></article>
+      <article><p>Unidades</p><strong id="total-unidades">0</strong></article>
+      <article><p>Valor del inventario</p><strong id="valor-total">$0.00</strong></article>
+      <article><p>Productos agotados</p><strong id="total-agotados">0</strong></article>
+    </section>
+    <p class="nota-resumen">Los indicadores corresponden a los productos visibles con el filtro actual.</p>
+
+    <section class="panel" aria-labelledby="titulo-formulario">
+      <div class="titulo-seccion"><span class="paso">01</span><h2 id="titulo-formulario">Agregar un producto</h2></div>
+      <!-- novalidate permite mostrar los errores mediante validarProducto y try...catch. -->
+      <form id="formulario-producto" novalidate>
+        <div class="campo"><label for="nombre">Nombre</label><input id="nombre" name="nombre" type="text" placeholder="Ej. Libreta de bocetos" required></div>
+        <div class="campo"><label for="categoria">Categoría</label><input id="categoria" name="categoria" type="text" list="categorias-disponibles" placeholder="Ej. Papelería" required><datalist id="categorias-disponibles"></datalist></div>
+        <div class="campo"><label for="cantidad">Cantidad</label><input id="cantidad" name="cantidad" type="number" min="1" step="1" placeholder="1" required></div>
+        <div class="campo"><label for="precio">Precio unitario ($)</label><input id="precio" name="precio" type="number" min="0" step="0.01" placeholder="0.00" required></div>
+        <button type="submit" class="btn-agregar">+ Agregar producto</button>
+        <p id="mensaje-error" role="alert" hidden></p>
+      </form>
+    </section>
+
+    <section class="panel panel-tabla" aria-labelledby="titulo-inventario">
+      <div class="barra-tabla"><div class="titulo-seccion"><span class="paso">02</span><h2 id="titulo-inventario">Materiales registrados</h2></div>
+        <div class="filtro"><label for="filtro-categoria">Categoría</label><select id="filtro-categoria"><option value="todas">Todas las categorías</option></select></div>
+      </div>
+      <div class="tabla-desplazable"><table><caption class="solo-lectores">Inventario de materiales creativos. Los precios se expresan en dólares estadounidenses.</caption>
+        <thead><tr><th scope="col">Producto</th><th scope="col">Categoría</th><th scope="col">Cantidad</th><th scope="col">Precio</th><th scope="col">Subtotal</th><th scope="col">Estado</th><th scope="col">Acciones</th></tr></thead>
+        <tbody id="cuerpo-inventario"></tbody>
+      </table></div>
+      <p id="mensaje-vacio" hidden>No hay productos en esta categoría. Agrega uno o selecciona otra categoría.</p>
+    </section>
+    <footer>Camila Alfaro · Tarea 7 · Manipulación del DOM y eventos <span>Los datos se reinician al recargar la página.</span></footer>
+  </main>
+</body>
+</html>
